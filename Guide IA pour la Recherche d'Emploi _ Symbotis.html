@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<!-- saved from url=(0156)https://page.gensparksite.com/docs_agent/4a7222b7-a297-40dc-9061-e252b18dd928/9939a7d8-7be9-4816-9ad6-896e049f2797/aff1309d-9e6c-4a55-a0bc-aa531d0d38a6.html -->
+<html lang="fr" data-theme="light" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide IA pour la Recherche d'Emploi | Symbotis</title>
+    <meta name="description" content="Guide complet pour utiliser l&#39;intelligence artificielle dans votre recherche d&#39;emploi. Optimisez vos candidatures, préparez vos entretiens et négociez efficacement.">
+    
+    <!-- Fonts Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./Guide IA pour la Recherche d&#39;Emploi _ Symbotis_files/css2" rel="stylesheet">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="./Guide IA pour la Recherche d&#39;Emploi _ Symbotis_files/all.min.css">
+    
+    <style>
+      :root {
+        --primary-color: #0066cc;
+        --secondary-color: #004499;
+        --accent-color: #00ccff;
+        --success-color: #28a745;
+        --warning-color: #ffc107;
+        --text-primary: #1a1a1a;
+        --text-secondary: #666666;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --bg-accent: #e8f4fd;
+        --border-color: #e0e6ed;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.7;
+        color: var(--text-primary);
+        background-color: var(--bg-primary);
+        font-size: 16px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header Symbotis */
+      .header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        padding: 60px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M 8 0 L 0 0 0 8" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23smallGrid)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .header-content {
+        position: relative;
+      }
+
+      .logo-container {
+        margin-bottom: 30px;
+      }
+
+      .logo {
+        height: 60px;
+        width: auto;
+      }
+
+      .header h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      }
+
+      .header .subtitle {
+        font-size: 1.3rem;
+        font-weight: 300;
+        opacity: 0.9;
+        margin-bottom: 10px;
+      }
+
+      .header .author {
+        font-size: 1rem;
+        opacity: 0.8;
+      }
+
+      .header .author a {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      /* Navigation Table des matières */
+      .toc {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 30px;
+        margin: 40px 0;
+        box-shadow: var(--shadow);
+      }
+
+      .toc h3 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .toc ol {
+        list-style: none;
+        counter-reset: toc-counter;
+      }
+
+      .toc ol li {
+        counter-increment: toc-counter;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .toc ol li:last-child {
+        border-bottom: none;
+      }
+
+      .toc ol li::before {
+        content: counter(toc-counter);
+        background: var(--primary-color);
+        color: white;
+        font-weight: 600;
+        padding: 4px 8px;
+        border-radius: 50%;
+        margin-right: 15px;
+        font-size: 0.9rem;
+      }
+
+      /* Sections principales */
+      .section {
+        margin: 60px 0;
+        padding: 0 20px;
+      }
+
+      h2 {
+        color: var(--primary-color);
+        font-size: 2.2rem;
+        font-weight: 600;
+        margin: 50px 0 30px 0;
+        padding-bottom: 15px;
+        border-bottom: 3px solid var(--accent-color);
+        position: relative;
+      }
+
+      h2::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 50px;
+        height: 3px;
+        background: var(--primary-color);
+      }
+
+      h3 {
+        color: var(--secondary-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 35px 0 20px 0;
+        display: flex;
+        align-items: center;
+      }
+
+      h3::before {
+        content: '';
+        width: 4px;
+        height: 25px;
+        background: var(--accent-color);
+        margin-right: 15px;
+        border-radius: 2px;
+      }
+
+      /* Boîtes spécialisées */
+      .tool-box {
+        background: linear-gradient(135deg, var(--bg-accent) 0%, #f0f8ff 100%);
+        border: 1px solid var(--accent-color);
+        border-radius: 12px;
+        padding: 25px;
+        margin: 25px 0;
+        box-shadow: var(--shadow);
+        position: relative;
+      }
+
+      .tool-box::before {
+        content: '\f013';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        color: var(--primary-color);
+        font-size: 1.2rem;
+        opacity: 0.7;
+      }
+
+      .prompt-example {
+        background: #f8f9fa;
+        border: 2px solid var(--border-color);
+        border-left: 5px solid var(--warning-color);
+        border-radius: 8px;
+        padding: 20px;
+        margin: 25px 0;
+        font-family: 'Monaco', 'Consolas', monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        position: relative;
+      }
+
+      .prompt-example::before {
+        content: 'Prompt IA';
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        background: var(--warning-color);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+      }
+
+      .tip {
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        border: 1px solid var(--warning-color);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 25px 0;
+        position: relative;
+        box-shadow: var(--shadow);
+      }
+
+      .tip::before {
+        content: '\f0eb';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        color: var(--warning-color);
+        font-size: 1.2rem;
+      }
+
+      /* Tableaux */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 30px 0;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      table th {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        padding: 18px 15px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      table td {
+        padding: 15px;
+        border-bottom: 1px solid var(--border-color);
+        vertical-align: top;
+      }
+
+      table tr:hover {
+        background-color: var(--bg-accent);
+      }
+
+      /* Listes */
+      ul, ol {
+        margin: 20px 0;
+        padding-left: 0;
+      }
+
+      ul li, ol li {
+        margin: 10px 0;
+        padding-left: 30px;
+        position: relative;
+      }
+
+      ul li::before {
+        content: '\f105';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+      }
+
+      .checklist {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .checklist li {
+        padding: 12px 0 12px 40px;
+        position: relative;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .checklist li::before {
+        content: '\f00c';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        top: 12px;
+        color: var(--success-color);
+        background: white;
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--success-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+
+      /* Sections spéciales */
+      .symbotis-intro {
+        background: linear-gradient(135deg, var(--bg-accent) 0%, white 100%);
+        border-radius: 20px;
+        padding: 40px;
+        margin: 40px 0;
+        box-shadow: var(--shadow-hover);
+        position: relative;
+      }
+
+      .symbotis-intro::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 20px;
+        padding: 2px;
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: source-out;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: subtract;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--text-primary);
+        color: white;
+        text-align: center;
+        padding: 40px 0;
+        margin-top: 80px;
+      }
+
+      .footer p {
+        opacity: 0.8;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 2rem;
+        }
+        
+        .header .subtitle {
+          font-size: 1.1rem;
+        }
+        
+        .section {
+          padding: 0 10px;
+        }
+        
+        h2 {
+          font-size: 1.8rem;
+        }
+        
+        .tool-box, .prompt-example, .tip {
+          padding: 20px 15px;
+        }
+        
+        table {
+          font-size: 14px;
+        }
+        
+        table th, table td {
+          padding: 12px 8px;
+        }
+      }
+
+      /* Règles d'impression optimisées */
+      @media print {
+        .header {
+          background: var(--primary-color) !important;
+          color: white !important;
+        }
+        
+        h1, h2, h3 {
+          page-break-after: avoid;
+          break-after: avoid;
+        }
+        
+        .tool-box, .prompt-example, .tip, table {
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+        
+        .toc {
+          page-break-after: always;
+          break-after: page;
+        }
+        
+        p {
+          orphans: 3;
+          widows: 3;
+        }
+        
+        body {
+          font-size: 12pt;
+          line-height: 1.5;
+        }
+        
+        .container {
+          max-width: none;
+          padding: 0;
+        }
+      }
+    </style>
+  </head>
+  <body style="">
+    <!-- Header Symbotis -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo-container">
+            <img src="./Guide IA pour la Recherche d&#39;Emploi _ Symbotis_files/logo.png" alt="Symbotis Logo" class="logo" data-height-listener-added="true">
+          </div>
+          <h1>Guide IA Recherche d'Emploi</h1>
+          <p class="subtitle">Utiliser l'Intelligence Artificielle pour réussir sa recherche d'emploi</p>
+          <p class="author">Par <a href="https://www.symbotis.com/" target="_blank">Symbotis</a> - David SERVAIS</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+
+    <div class="toc">
+      <h3>Table des matières</h3>
+      <ol>
+        <li>Présentation de Symbotis</li>
+        <li>Introduction : L'IA, votre nouvel allié pour trouver un emploi</li>
+        <li>Étape 1 : Sourcing et veille des offres d'emploi avec l'IA</li>
+        <li>Étape 2 : Optimisation du CV et de la lettre de motivation</li>
+        <li>Étape 3 : Préparation aux entretiens d'embauche</li>
+        <li>Étape 4 : Négociation salariale et finalisation du contrat</li>
+        <li>Les meilleurs outils IA recommandés</li>
+        <li>Conseils et bonnes pratiques</li>
+        <li>Conclusion et ressources supplémentaires</li>
+      </ol>
+    </div>
+
+    <section class="section symbotis-intro">
+      <h2><i class="fas fa-building" style="margin-right: 15px; color: var(--primary-color);"></i>Présentation de Symbotis</h2>
+
+    <h3>1.1 Notre équipe</h3>
+
+    <p>
+      Symbotis est une équipe d'experts passionnés par l'innovation technologique et le développement humain. Notre 
+      équipe pluridisciplinaire réunit des spécialistes en intelligence artificielle, des coachs en développement 
+      professionnel, des consultants en ressources humaines et des experts en transformation digitale.
+    </p>
+
+    <p>
+      Forts de plusieurs années d'expérience dans l'accompagnement des professionnels et des entreprises, nous 
+      maîtrisons les enjeux actuels du marché de l'emploi et les opportunités offertes par les nouvelles technologies.
+    </p>
+
+    <h3>1.2 Notre mission</h3>
+
+    <div class="tool-box">
+      <strong>La mission de Symbotis :</strong>
+      <p>
+        <em>"Démocratiser l'accès aux outils d'intelligence artificielle pour révolutionner la recherche d'emploi 
+        et l'évolution professionnelle de chacun."</em>
+      </p>
+      
+      <p>Nous croyons fermement que l'IA doit être accessible à tous et utilisée de manière éthique pour :</p>
+      <ul>
+        <li>Réduire les inégalités face à l'emploi</li>
+        <li>Optimiser l'efficacité des démarches de recherche</li>
+        <li>Valoriser les compétences et talents de chaque individu</li>
+        <li>Accompagner les transitions professionnelles</li>
+      </ul>
+    </div>
+
+    <h3>1.3 Notre offre</h3>
+
+    <p>
+      Symbotis propose une approche complète d'accompagnement alliant expertise humaine et technologies de pointe :
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Description</th>
+          <th>Bénéfices</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Coaching IA personnalisé</strong></td>
+          <td>Accompagnement individuel pour maîtriser les outils IA dans sa recherche d'emploi</td>
+          <td>Stratégie sur-mesure, gain de temps, optimisation des résultats</td>
+        </tr>
+        <tr>
+          <td><strong>Formations collectives</strong></td>
+          <td>Workshops et séminaires sur l'utilisation de l'IA en contexte professionnel</td>
+          <td>Montée en compétences rapide, networking, coût optimisé</td>
+        </tr>
+        <tr>
+          <td><strong>Audit de profil digital</strong></td>
+          <td>Analyse complète de votre présence en ligne et optimisation IA</td>
+          <td>Visibilité accrue, cohérence du personal branding</td>
+        </tr>
+        <tr>
+          <td><strong>Outils propriétaires</strong></td>
+          <td>Plateforme exclusive avec prompts optimisés et templates personnalisés</td>
+          <td>Efficacité maximale, mise à jour continue des bonnes pratiques</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tip">
+      <strong>Engagement qualité Symbotis :</strong> Nous nous engageons à vous accompagner jusqu'à l'obtention 
+      de votre objectif professionnel. Notre approche combine l'efficacité de l'IA avec la dimension humaine 
+      indispensable à votre réussite.
+    </div>
+
+    <div class="tip">
+      <strong><i class="fas fa-phone" style="margin-right: 10px;"></i>Contact Symbotis :</strong> Pour découvrir comment Symbotis peut accélérer votre recherche d'emploi, 
+      contactez-nous pour un diagnostic gratuit de 30 minutes.
+      <br><br>
+      <strong>Email :</strong> contact@symbotis.com <br>
+      <strong>Téléphone :</strong> +33 (0)6 86 84 64 29
+    </div>
+    </section>
+
+    <section class="section">
+      <h2><i class="fas fa-robot" style="margin-right: 15px; color: var(--primary-color);"></i>Introduction : L'IA, votre nouvel allié pour trouver un emploi</h2>
+
+    <p>
+      Dans un marché de l'emploi en constante évolution, l'intelligence artificielle (IA) est devenue un outil
+      incontournable pour optimiser sa recherche d'emploi. Les recruteurs utilisent déjà des algorithmes pour filtrer
+      les candidatures, analyser les CV et même pré-sélectionner les candidats. Il est donc essentiel pour les
+      chercheurs d'emploi de maîtriser ces technologies pour maximiser leurs chances de succès.
+    </p>
+
+    <p>
+      Ce guide vous accompagnera dans l'utilisation stratégique de l'IA à chaque étape de votre parcours, de la
+      recherche d'offres jusqu'à la signature de votre contrat. Vous découvrirez comment automatiser certaines tâches,
+      optimiser vos candidatures et vous préparer efficacement aux entretiens.
+    </p>
+
+    <div class="tip">
+      <strong>Conseil d'expert :</strong> L'IA ne remplace pas votre expertise humaine, elle la complète. Utilisez-la
+      comme un assistant intelligent qui vous fait gagner du temps et améliore la qualité de vos démarches.
+    </div>
+
+    </section>
+
+    <section class="section">
+      <h2><i class="fas fa-search" style="margin-right: 15px; color: var(--primary-color);"></i>Étape 1 : Sourcing et veille des offres d'emploi avec l'IA</h2>
+
+    <h3>3.1 Automatiser la recherche d'offres</h3>
+
+    <p>
+      L'IA peut considérablement améliorer votre efficacité dans la recherche d'offres d'emploi en automatisant la
+      veille et en filtrant les opportunités pertinentes.
+    </p>
+
+    <div class="tool-box">
+      <strong>Outils recommandés :</strong>
+      <ul>
+        <li><strong>Google Alerts personnalisés</strong> : Configurez des alertes avec des mots-clés spécifiques</li>
+        <li><strong>LinkedIn Job Alerts</strong> : Utilisez les filtres avancés et l'IA de recommandation</li>
+        <li><strong>Indeed Smart Apply</strong> : Candidature semi-automatique</li>
+        <li><strong>Glassdoor</strong> : Analyse des entreprises et salaires</li>
+      </ul>
+    </div>
+
+    <h3>3.2 Prompt pour analyser une offre d'emploi</h3>
+
+    <div class="prompt-example">
+      "Analyse cette offre d'emploi et extrais les informations clés : [Coller le texte de l'offre] Fournis-moi : 1. Les
+      compétences techniques requises 2. Les compétences comportementales recherchées 3. Le niveau d'expérience demandé
+      4. Les mots-clés importants à utiliser dans ma candidature 5. Les points de culture d'entreprise mentionnés 6. Une
+      évaluation de ma compatibilité (sur 10) si je te donne mon profil"
+    </div>
+
+    <h3>3.3 Créer des alertes intelligentes</h3>
+
+    <p>Utilisez l'IA pour créer des requêtes de recherche sophistiquées qui captent les nuances du marché :</p>
+
+    <div class="prompt-example">
+      "Aide-moi à créer des alertes Google Alerts optimisées pour mon profil : - Poste recherché : [votre cible] -
+      Secteur : [votre domaine] - Localisation : [votre zone géographique] - Niveau : [votre expérience] Génère 5
+      requêtes de recherche avec des synonymes et variations pour maximiser ma couverture du marché."
+    </div>
+
+    </section>
+
+    <section class="section">
+      <h2><i class="fas fa-file-alt" style="margin-right: 15px; color: var(--primary-color);"></i>Étape 2 : Optimisation du CV et de la lettre de motivation</h2>
+
+    <h3>4.1 Optimisation ATS (Applicant Tracking System)</h3>
+
+    <p>
+      Les systèmes ATS filtrent automatiquement les CV. Votre CV doit être optimisé pour passer ces filtres tout en
+      restant attractif pour les recruteurs humains.
+    </p>
+
+    <div class="prompt-example">
+      "Analyse mon CV pour l'optimiser pour les systèmes ATS : [Coller votre CV] Vérifie : 1. L'utilisation des
+      mots-clés de l'offre d'emploi 2. La structure et le formatage 3. Les sections manquantes 4. La densité de
+      mots-clés appropriée 5. Propose des améliorations concrètes"
+    </div>
+
+    <h3>4.2 Personnalisation automatique du CV</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Élément à personnaliser</th>
+          <th>Méthode IA</th>
+          <th>Exemple de prompt</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Titre professionnel</td>
+          <td>Adaptation aux mots-clés de l'offre</td>
+          <td>"Reformule mon titre professionnel pour cette offre : [titre offre]"</td>
+        </tr>
+        <tr>
+          <td>Résumé professionnel</td>
+          <td>Mise en avant des compétences pertinentes</td>
+          <td>"Réécris mon résumé en mettant l'accent sur [compétences de l'offre]"</td>
+        </tr>
+        <tr>
+          <td>Compétences techniques</td>
+          <td>Priorisation selon l'offre</td>
+          <td>"Classe mes compétences par ordre de pertinence pour ce poste"</td>
+        </tr>
+        <tr>
+          <td>Expériences</td>
+          <td>Reformulation avec impact mesurable</td>
+          <td>"Transforme cette expérience en résultat quantifiable"</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4.3 Génération de lettres de motivation personnalisées</h3>
+
+    <div class="prompt-example">
+      "Rédige une lettre de motivation personnalisée pour cette offre : PROFIL CANDIDAT : - [Votre expérience clé] -
+      [Vos compétences principales] - [Vos motivations] OFFRE D'EMPLOI : - [Résumé du poste] - [Entreprise et secteur] -
+      [Compétences requises] CONSIGNES : - Ton professionnel mais authentique - Lien clair entre mon profil et leurs
+      besoins - Mention d'un élément spécifique à l'entreprise - Maximum 3 paragraphes + formules de politesse"
+    </div>
+
+    <h3>4.4 Optimisation continue</h3>
+
+    <ul class="checklist">
+      <li>Testez différentes versions de votre CV avec l'IA</li>
+      <li>Analysez les taux de réponse par version</li>
+      <li>Ajustez les mots-clés selon les feedbacks</li>
+      <li>Mettez à jour régulièrement votre base de données de compétences</li>
+    </ul>
+
+    </section>
+
+    <section class="section">
+      <h2><i class="fas fa-comments" style="margin-right: 15px; color: var(--primary-color);"></i>Étape 3 : Préparation aux entretiens d'embauche</h2>
+
+    <h3>5.1 Recherche approfondie sur l'entreprise</h3>
+
+    <div class="prompt-example">
+      "Prépare-moi un brief complet sur cette entreprise pour mon entretien : ENTREPRISE : [Nom de l'entreprise] POSTE :
+      [Intitulé du poste] Analyse et résume : 1. Historique et évolution récente de l'entreprise 2. Principaux
+      concurrents et positionnement marché 3. Actualités récentes et enjeux business 4. Culture d'entreprise et valeurs
+      5. Défis du secteur et opportunités 6. 5 questions intelligentes que je pourrais poser en entretien"
+    </div>
+
+    <h3>5.2 Simulation d'entretiens avec l'IA</h3>
+
+    <p>Préparez-vous aux questions les plus courantes et à celles spécifiques à votre secteur :</p>
+
+    <div class="prompt-example">
+      "Je vais passer un entretien pour le poste de [intitulé]. Joue le rôle du recruteur et pose-moi 10 questions
+      d'entretien : - 3 questions générales sur mon parcours - 4 questions techniques liées au poste - 2 questions
+      comportementales (méthode STAR) - 1 question sur mes motivations Après chaque réponse, donne-moi un feedback
+      constructif et des suggestions d'amélioration."
+    </div>
+
+    <h3>5.3 Préparation des réponses STAR</h3>
+
+    <p>Structurez vos expériences selon la méthode STAR (Situation, Tâche, Action, Résultat) :</p>
+
+    <div class="prompt-example">
+      "Aide-moi à structurer cette expérience selon la méthode STAR : EXPÉRIENCE : [Décrivez votre expérience] Reformule
+      en : - Situation : Contexte et enjeux - Tâche : Votre mission spécifique - Action : Ce que vous avez fait
+      concrètement - Résultat : Impact mesurable de vos actions Rends le récit impactant et mémorable en 2 minutes
+      maximum."
+    </div>
+
+    <h3>5.4 Gestion du stress et préparation mentale</h3>
+
+    <div class="tip">
+      <strong>Technique IA pour la confiance :</strong> Demandez à l'IA de générer des affirmations positives
+      personnalisées basées sur vos réussites passées. Répétez-les avant l'entretien pour renforcer votre confiance.
+    </div>
+
+    </section>
+
+    <section class="section">
+      <h2><i class="fas fa-handshake" style="margin-right: 15px; color: var(--primary-color);"></i>Étape 4 : Négociation salariale et finalisation du contrat</h2>
+
+    <h3>6.1 Recherche de données salariales</h3>
+
+    <div class="prompt-example">
+      "Aide-moi à préparer ma négociation salariale : POSTE : [Intitulé exact] SECTEUR : [Votre secteur] LOCALISATION :
+      [Ville/région] EXPÉRIENCE : [Années d'expérience] TAILLE ENTREPRISE : [PME/ETI/Grand groupe] Fournis-moi : 1.
+      Fourchette salariale du marché 2. Éléments de rémunération à négocier (variable, avantages) 3. Arguments pour
+      justifier le haut de fourchette 4. Script de négociation tactique 5. Alternatives si le salaire n'est pas
+      négociable"
+    </div>
+
+    <h3>6.2 Analyse et négociation du contrat</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Élément contractuel</th>
+          <th>Questions à poser à l'IA</th>
+          <th>Points de vigilance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Période d'essai</td>
+          <td>"Cette durée est-elle standard pour mon secteur ?"</td>
+          <td>Possibilité de renouvellement</td>
+        </tr>
+        <tr>
+          <td>Clause de non-concurrence</td>
+          <td>"Cette clause est-elle équitable et légale ?"</td>
+          <td>Contrepartie financière</td>
+        </tr>
+        <tr>
+          <td>Formation</td>
+          <td>"Quels droits à la formation puis-je négocier ?"</td>
+          <td>Budget formation annuel</td>
+        </tr>
+        <tr>
+          <td>Télétravail</td>
+          <td>"Comment formaliser les modalités de télétravail ?"</td>
+          <td>Équipements fournis</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>6.3 Préparation du follow-up</h3>
+
+    <div class="prompt-example">
+      "Rédige un email de remerciement post-entretien qui : 1. Remercie pour le temps accordé 2. Réaffirme mon intérêt
+      pour le poste 3. Apporte une précision ou information complémentaire 4. Propose une date de relance appropriée
+      Contexte : [Résumé de l'entretien et next steps mentionnés]"
+    </div>
+
+    </section>
+
+    <section class="section">
+      <h2><i class="fas fa-tools" style="margin-right: 15px; color: var(--primary-color);"></i>Les meilleurs outils IA recommandés</h2>
+
+    <h3>7.1 Outils généralistes</h3>
+
+    <div class="tool-box">
+      <strong>ChatGPT / Claude / Gemini</strong>
+      <ul>
+        <li>Rédaction et optimisation de CV</li>
+        <li>Préparation d'entretiens</li>
+        <li>Analyse d'offres d'emploi</li>
+        <li>Simulation de négociations</li>
+      </ul>
+
+      <strong>Grammarly</strong>
+      <ul>
+        <li>Correction orthographique et grammaticale</li>
+        <li>Amélioration du style d'écriture</li>
+        <li>Adaptation du ton professionnel</li>
+      </ul>
+    </div>
+
+    <h3>7.2 Outils spécialisés CV/LinkedIn</h3>
+
+    <div class="tool-box">
+      <strong>Resume.io / Canva</strong>
+      <ul>
+        <li>Templates de CV optimisés ATS</li>
+        <li>Design professionnel automatique</li>
+      </ul>
+
+      <strong>LinkedIn Resume Assistant</strong>
+      <ul>
+        <li>Suggestions basées sur les profils similaires</li>
+        <li>Optimisation pour les recruteurs</li>
+      </ul>
+    </div>
+
+    <h3>7.3 Outils de recherche et veille</h3>
+
+    <div class="tool-box">
+      <strong>Otta / Wellfound (AngelList)</strong>
+      <ul>
+        <li>Matching intelligent candidat-poste</li>
+        <li>Recommandations personnalisées</li>
+      </ul>
+
+      <strong>Huntr</strong>
+      <ul>
+        <li>Suivi automatisé des candidatures</li>
+        <li>Analytics de recherche d'emploi</li>
+      </ul>
+    </div>
+
+    </section>
+
+    <section class="section">
+      <h2><i class="fas fa-lightbulb" style="margin-right: 15px; color: var(--primary-color);"></i>Conseils et bonnes pratiques</h2>
+
+    <h3>8.1 Règles d'or de l'utilisation de l'IA en recrutement</h3>
+
+    <ul class="checklist">
+      <li><strong>Personnalisez toujours :</strong> N'utilisez jamais de contenu IA sans l'adapter à votre profil</li>
+      <li><strong>Vérifiez les informations :</strong> L'IA peut parfois générer des données incorrectes</li>
+      <li><strong>Gardez votre authenticité :</strong> L'IA doit amplifier votre personnalité, pas la remplacer</li>
+      <li><strong>Testez et itérez :</strong> Mesurez l'efficacité de vos approches IA</li>
+      <li><strong>Restez éthique :</strong> Soyez transparent sur vos compétences réelles</li>
+    </ul>
+
+    <h3>8.2 Erreurs à éviter</h3>
+
+    <div class="tip">
+      <strong>Attention aux pièges :</strong>
+      <ul>
+        <li>Ne copiez jamais directement le contenu généré par l'IA</li>
+        <li>Évitez les formulations trop "robotiques"</li>
+        <li>Ne surestimez pas vos compétences techniques</li>
+        <li>N'oubliez pas de préparer des exemples concrets et personnels</li>
+      </ul>
+    </div>
+
+    <h3>8.3 Mesure de performance</h3>
+
+    <p>Trackez l'efficacité de votre approche IA :</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Métrique</th>
+          <th>Objectif</th>
+          <th>Outil de mesure</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Taux de réponse aux candidatures</td>
+          <td>15-25%</td>
+          <td>Tableur de suivi</td>
+        </tr>
+        <tr>
+          <td>Conversion entretien → offre</td>
+          <td>20-40%</td>
+          <td>Huntr / Notion</td>
+        </tr>
+        <tr>
+          <td>Temps moyen de recherche</td>
+          <td>Réduction de 30%</td>
+          <td>Time tracking</td>
+        </tr>
+        <tr>
+          <td>Qualité des opportunités</td>
+          <td>Matching &gt; 80%</td>
+          <td>Évaluation personnelle</td>
+        </tr>
+      </tbody>
+    </table>
+
+    </section>
+
+    <section class="section">
+      <h2><i class="fas fa-flag-checkered" style="margin-right: 15px; color: var(--primary-color);"></i>Conclusion et ressources supplémentaires</h2>
+
+    <h3>9.1 Synthèse des points clés</h3>
+
+    <p>
+      L'intelligence artificielle transforme radicalement la recherche d'emploi. En maîtrisant ces outils et techniques,
+      vous vous donnez un avantage concurrentiel significatif. L'clé du succès réside dans l'équilibre entre
+      l'efficacité de l'IA et l'authenticité humaine.
+    </p>
+
+    <p>
+      Rappelez-vous que l'IA est un amplificateur de vos compétences existantes, pas un substitut à votre expertise et à
+      votre personnalité. Utilisez-la pour optimiser vos processus, gagner du temps sur les tâches répétitives et
+      améliorer la qualité de vos candidatures.
+    </p>
+
+    <h3>9.2 Plan d'action en 30 jours</h3>
+
+    <div class="tool-box">
+      <strong>Semaine 1 : Audit et optimisation</strong>
+      <ul>
+        <li>Auditez votre CV avec l'IA</li>
+        <li>Configurez vos alertes de veille automatisée</li>
+        <li>Créez vos templates de lettres de motivation</li>
+      </ul>
+
+      <strong>Semaine 2 : Recherche active</strong>
+      <ul>
+        <li>Lancez vos premières candidatures optimisées IA</li>
+        <li>Commencez la recherche approfondie sur vos entreprises cibles</li>
+        <li>Préparez vos réponses STAR avec l'aide de l'IA</li>
+      </ul>
+
+      <strong>Semaine 3-4 : Entretiens et négociation</strong>
+      <ul>
+        <li>Simulez vos entretiens avec l'IA</li>
+        <li>Préparez vos négociations salariales</li>
+        <li>Analysez et ajustez votre stratégie selon les résultats</li>
+      </ul>
+    </div>
+
+    <h3>9.3 Ressources pour aller plus loin</h3>
+
+    <ul>
+      <li><strong>Formations recommandées :</strong> Coursera AI for Everyone, LinkedIn Learning AI Tools</li>
+      <li><strong>Communautés :</strong> Groupes LinkedIn sur l'IA en RH, forums Reddit r/jobs</li>
+      <li><strong>Veille technologique :</strong> Newsletters spécialisées (AI at Work, Future of Work)</li>
+      <li><strong>Livres référence :</strong> "The AI-Powered Recruiter" par David Chaudron</li>
+    </ul>
+
+    <div class="tip">
+      <strong>Conseil final :</strong> La technologie évolue rapidement. Révisez et mettez à jour vos méthodes tous les
+      3 mois pour rester à la pointe des dernières innovations IA dans le recrutement.
+    </div>
+
+    </section>
+    </div>
+
+    <!-- Footer Symbotis -->
+    <footer class="footer">
+      <div class="container">
+        <p><i class="fas fa-copyright" style="margin-right: 8px;"></i>2024 Symbotis - Expert en transformation digitale et IA</p>
+        <p>Guide rédigé par des experts en recrutement et coaching IA</p>
+        <p><a href="https://www.symbotis.com/" style="color: var(--accent-color); text-decoration: none;">www.symbotis.com</a> | contact@symbotis.com</p>
+      </div>
+    </footer>
+
+</body></html>
