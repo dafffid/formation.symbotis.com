@@ -1,7 +1,188 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Formation Symbotis</title>
-<h1>Bienvenue sur formation.symbotis.com</h1>
-<p>Page de test GitHub Pages.</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation à l'utilisation de l'IA - Symbotis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/symbotis-logo.png" alt="Symbotis Logo" class="logo-img">
+                    <span>Symbotis</span>
+                </div>
+                <nav class="nav">
+                    <a href="#formations">Formations</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Formation à l'utilisation de l'IA
+                        <span class="brand-suffix">made by Symbotis</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Maîtrisez l'Intelligence Artificielle dans votre domaine d'expertise
+                    </p>
+                    <p class="hero-description">
+                        Découvrez comment l'IA peut transformer votre secteur d'activité avec nos formations spécialisées, 
+                        conçues par les experts de Symbotis.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formations Section -->
+        <section class="formations" id="formations">
+            <div class="container">
+
+
+                <div class="formation-grid">
+                    <!-- Bloc 1: Recherche d'emploi -->
+                    <div class="formation-card clickable" data-domain="emploi">
+                        <div class="card-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>Recherche d'emploi</h3>
+                        <p>Optimisez votre recherche d'emploi avec les outils IA : CV intelligent, préparation d'entretiens, analyse de marché</p>
+                        <div class="card-footer">
+    
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 2: BTP -->
+                    <div class="formation-card non-clickable" data-domain="btp">
+                        <div class="card-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h3>Automatisation dans le BTP</h3>
+                        <p>Révolutionnez vos projets BTP : planification intelligente, gestion des ressources, sécurité prédictive</p>
+                        <div class="card-footer">
+    
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 3: Logistique -->
+                    <div class="formation-card non-clickable" data-domain="logistique">
+                        <div class="card-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3>Automatisation dans la Logistique</h3>
+                        <p>Optimisez votre chaîne logistique : prédiction de demande, routage intelligent, gestion d'entrepôt</p>
+                        <div class="card-footer">
+    
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 4: Marketing Digital -->
+                    <div class="formation-card non-clickable" data-domain="marketing">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Marketing Digital & IA</h3>
+                        <p>Personnalisez vos campagnes marketing : ciblage intelligent, contenu automatisé, analyse prédictive</p>
+                        <div class="card-footer">
+    
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 5: Santé -->
+                    <div class="formation-card non-clickable" data-domain="sante">
+                        <div class="card-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h3>IA dans la Santé</h3>
+                        <p>Améliorez les soins patients : diagnostic assisté, gestion des dossiers, planification optimale</p>
+                        <div class="card-footer">
+    
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 6: Finance -->
+                    <div class="formation-card non-clickable" data-domain="finance">
+                        <div class="card-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3>Finance & IA</h3>
+                        <p>Sécurisez et optimisez vos finances : analyse de risque, détection de fraude, trading algorithmique</p>
+                        <div class="card-footer">
+    
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal pour les détails -->
+        <div class="modal" id="formationModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle"></h3>
+                    <button class="close-btn" id="closeModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="modalContent"></div>
+                    <div class="modal-actions">
+                        <button class="btn-primary">S'inscrire</button>
+                        <button class="btn-secondary">Plus d'infos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Contact -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <h2>Commencez votre transformation IA</h2>
+                    <p>Contactez nos experts Symbotis pour personnaliser votre formation</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@symbotis.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+33 (0)6 86 84 64 29</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/symbotis-logo.png" alt="Symbotis Logo" class="footer-logo-img">
+                    <span>Symbotis</span>
+                </div>
+                <p>&copy; 2024 Symbotis - Expert IA, Cybersécurité & Innovation</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
