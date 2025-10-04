@@ -46,186 +46,7 @@
         padding: 0;
         box-sizing: border-box;
       }
-
-<!-- ===== POPUP / GATE SYMBOTIS — prêt à l'emploi ===== -->
-<style>
-  #symbGateOverlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,.55);
-    display: none; z-index: 99998;
-  }
-  #symbGateModal {
-    position: fixed; inset: 0; display: none; z-index: 99999;
-    align-items: center; justify-content: center; padding: 24px;
-  }
-  #symbGateCard {
-    width: 100%; max-width: 520px; background: #fff; border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,.25); overflow: hidden;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  }
-  #symbGateHeader { padding: 20px 24px; background: #0b62ff; color: #fff; }
-  #symbGateHeader h3 { margin: 0; font-size: 20px; line-height: 1.2; }
-  #symbGateBody { padding: 20px 24px; }
-  #symbGateBody p { margin: 0 0 12px; color: #333; }
-
-  .symbRow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .symbField { margin-bottom: 12px; }
-  .symbField label { display: block; font-size: 13px; margin-bottom: 6px; color: #222; }
-  .symbField input[type="text"], .symbField input[type="email"] {
-    width: 100%; height: 40px; padding: 0 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px;
-  }
-  .symbConsent { font-size: 12px; color: #555; display: flex; gap: 8px; align-items: flex-start; }
-  .symbConsent input { margin-top: 3px; }
-  .symbActions { margin-top: 16px; display: flex; gap: 8px; align-items: center; }
-  #symbGateSubmit {
-    height: 44px; padding: 0 16px; border-radius: 10px; border: none;
-    background: #0b62ff; color: #fff; font-weight: 600; cursor: pointer;
-  }
-  #symbGateSubmit[disabled] { opacity: .6; cursor: not-allowed; }
-  #symbGateNote { font-size: 12px; color: #666; }
-  body.symb-no-scroll { overflow: hidden; }
-  /* Champ honeypot caché */
-  .symbHoney { position: absolute; left: -9999px; top: -9999px; height: 0; width: 0; opacity: 0; }
-</style>
-
-<div id="symbGateOverlay" aria-hidden="true"></div>
-<div id="symbGateModal" role="dialog" aria-modal="true" aria-labelledby="symbGateTitle">
-  <div id="symbGateCard">
-    <div id="symbGateHeader">
-      <h3 id="symbGateTitle">Accédez au guide — 100% gratuit</h3>
-    </div>
-    <div id="symbGateBody">
-      <p>Remplissez ce court formulaire pour débloquer la lecture de la page.</p>
-
-      <form id="symbGateForm" method="post" novalidate>
-        <!-- CONTEXTE pour CRM / analytics -->
-        <input type="hidden" name="page_title" value="Guide IA pour la Recherche d'Emploi">
-        <input type="hidden" name="page_url" value="">
-        <input type="hidden" name="source" value="github-pages-gate">
-        <!-- Honeypot anti-spam -->
-        <input class="symbHoney" type="text" name="website" tabindex="-1" autocomplete="off" />
-
-        <div class="symbRow">
-          <div class="symbField">
-            <label for="sg_first">Prénom *</label>
-            <input id="sg_first" name="prenom" type="text" required autocomplete="given-name" />
-          </div>
-          <div class="symbField">
-            <label for="sg_last">Nom *</label>
-            <input id="sg_last" name="nom" type="text" required autocomplete="family-name" />
-          </div>
-        </div>
-
-        <div class="symbField">
-          <label for="sg_job">Métier *</label>
-          <input id="sg_job" name="metier" type="text" required />
-        </div>
-
-        <div class="symbField">
-          <label for="sg_email">Email professionnel *</label>
-          <input id="sg_email" name="email" type="email" required autocomplete="email" />
-        </div>
-
-        <label class="symbConsent">
-          <input id="sg_consent" type="checkbox" required />
-          <span>J’accepte d’être recontacté au sujet de ce guide. <a href="https://www.symbotis.com/privacy" target="_blank" rel="noopener">Politique de confidentialité</a>.</span>
-        </label>
-
-        <div class="symbActions">
-          <button id="symbGateSubmit" type="submit">Débloquer l’accès</button>
-          <span id="symbGateNote">* Champs obligatoires</span>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<script>
-(function() {
-  const STORAGE_KEY = 'symbotis:guide-recherche-emploi:unlocked';
-  const overlay = document.getElementById('symbGateOverlay');
-  const modal   = document.getElementById('symbGateModal');
-  const form    = document.getElementById('symbGateForm');
-  const submit  = document.getElementById('symbGateSubmit');
-
-  // Renseigne automatiquement l'URL de la page pour le CRM
-  const pageUrlInput = form.querySelector('input[name="page_url"]');
-  if (pageUrlInput) pageUrlInput.value = window.location.href;
-
-  function openModal() {
-    overlay.style.display = 'block';
-    modal.style.display = 'flex';
-    document.body.classList.add('symb-no-scroll');
-  }
-  function closeModal() {
-    overlay.style.display = 'none';
-    modal.style.display = 'none';
-    document.body.classList.remove('symb-no-scroll');
-  }
-
-  // Si déjà débloqué, ne rien afficher
-  const already = localStorage.getItem(STORAGE_KEY) === '1';
-  if (!already) openModal();
-
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    // Honeypot simple
-    const honey = form.querySelector('input[name="website"]');
-    if (honey && honey.value) {
-      // Probable bot : on ne débloque pas.
-      alert('Erreur de validation. Merci de réessayer.');
-      return;
-    }
-
-    submit.disabled = true;
-    const original = submit.textContent;
-    submit.textContent = 'Envoi...';
-
-    const data = new FormData(form);
-
-    try {
-      // Envoi au même service que ton site principal (Formcarry)
-      const res = await fetch('https://formcarry.com/s/PXeLIboaBp5', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      // On ne bloque pas l'accès si res non-200 (certaines intégrations renvoient 302/204)
-      // -> on débloque dans tous les cas après tentative d'envoi.
-      // Conversion Google Ads (comme sur www.symbotis.com)
-      if (typeof gtag_report_conversion === 'function') {
-        try { gtag_report_conversion(); } catch(e) {}
-      }
-
-      localStorage.setItem(STORAGE_KEY, '1');
-      closeModal();
-    } catch (err) {
-      console.warn('Envoi formulaire : erreur réseau (on débloque quand même).', err);
-      localStorage.setItem(STORAGE_KEY, '1');
-      closeModal();
-    } finally {
-      submit.textContent = original;
-      submit.disabled = false;
-    }
-  });
-
-  // Utilitaire pour forcer le popup à réapparaître (console)
-  window.__resetSymbotisGate = function() {
-    localStorage.removeItem(STORAGE_KEY);
-    openModal();
-  };
-})();
-</script>
-<!-- ===== /POPUP ===== -->
-
-        
-        
+             
       body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         line-height: 1.7;
@@ -1189,4 +1010,152 @@
       </div>
     </footer>
 
+<!-- === POPUP / GATE SYMBOTIS — fond flouté === -->
+<style>
+  /* overlay assombri + flou natif derrière (si supporté) */
+  #symbGateOverlay{
+    position:fixed; inset:0;
+    background: rgba(0,0,0,.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display:none; z-index:99998;
+  }
+  /* conteneur modal */
+  #symbGateModal{
+    position:fixed; inset:0;
+    display:none; align-items:center; justify-content:center;
+    z-index:99999; padding:24px;
+  }
+  /* carte */
+  #symbGateCard{
+    width:100%; max-width:520px; background:#fff; border-radius:12px;
+    box-shadow:0 10px 40px rgba(0,0,0,.25); overflow:hidden;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+  #symbGateHeader{ padding:20px 24px; background:#0b62ff; color:#fff; }
+  #symbGateBody{ padding:20px 24px; }
+  #symbGateBody p{ margin-bottom:12px; }
+
+  .symbRow{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .symbField{ margin-bottom:12px; }
+  .symbField label{ display:block; font-size:13px; margin-bottom:4px; }
+  .symbField input[type="text"], .symbField input[type="email"]{
+    width:100%; height:40px; padding:0 12px; border:1px solid #ddd; border-radius:8px;
+  }
+  .symbConsent{ font-size:12px; display:flex; gap:8px; align-items:flex-start; }
+  .symbActions{ margin-top:16px; display:flex; gap:8px; align-items:center; }
+  #symbGateSubmit{
+    background:#0b62ff; color:#fff; font-weight:600; border:none;
+    border-radius:8px; padding:0 16px; height:44px; cursor:pointer;
+  }
+  #symbGateSubmit[disabled]{ opacity:.6; cursor:not-allowed; }
+
+  /* Empêcher le scroll quand ouvert */
+  body.symb-no-scroll{ overflow:hidden; }
+
+  /* FALLBACK universel : floute tout sauf le popup quand body a .symb-blur */
+  body.symb-blur > :not(#symbGateOverlay):not(#symbGateModal){
+    filter: blur(8px);
+    transition: filter .2s ease;
+  }
+</style>
+
+<div id="symbGateOverlay"></div>
+<div id="symbGateModal" role="dialog" aria-modal="true" aria-labelledby="symbGateTitle">
+  <div id="symbGateCard">
+    <div id="symbGateHeader"><h3 id="symbGateTitle">Accédez au guide — 100% gratuit</h3></div>
+    <div id="symbGateBody">
+      <p>Remplissez ce court formulaire pour débloquer la lecture de la page.</p>
+
+      <form id="symbGateForm" method="post" novalidate>
+        <!-- Contexte pour CRM/analytics -->
+        <input type="hidden" name="page_title" value="Guide IA pour la Recherche d'Emploi">
+        <input type="hidden" name="page_url" value="">
+        <input type="hidden" name="source" value="github-pages-gate">
+
+        <div class="symbRow">
+          <div class="symbField">
+            <label>Prénom *</label>
+            <input name="prenom" type="text" required autocomplete="given-name">
+          </div>
+          <div class="symbField">
+            <label>Nom *</label>
+            <input name="nom" type="text" required autocomplete="family-name">
+          </div>
+        </div>
+
+        <div class="symbField">
+          <label>Métier *</label>
+          <input name="metier" type="text" required>
+        </div>
+
+        <div class="symbField">
+          <label>Email professionnel *</label>
+          <input name="email" type="email" required autocomplete="email">
+        </div>
+
+        <label class="symbConsent">
+          <input type="checkbox" id="sg_consent" required>
+          <span>J’accepte d’être recontacté au sujet de ce guide.
+            <a href="https://www.symbotis.com/privacy" target="_blank" rel="noopener">Politique de confidentialité</a>.
+          </span>
+        </label>
+
+        <div class="symbActions">
+          <button id="symbGateSubmit" type="submit">Débloquer l’accès</button>
+          <span style="font-size:12px;color:#666;">* Champs obligatoires</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY='symbotis:guide-unlocked';
+  const overlay=document.getElementById('symbGateOverlay');
+  const modal=document.getElementById('symbGateModal');
+  const form=document.getElementById('symbGateForm');
+  const submit=document.getElementById('symbGateSubmit');
+
+  // Renseigner l'URL
+  const urlInput=form.querySelector('input[name="page_url"]');
+  if(urlInput) urlInput.value=window.location.href;
+
+  function openModal(){
+    overlay.style.display='block';
+    modal.style.display='flex';
+    document.body.classList.add('symb-no-scroll','symb-blur'); // <- flou fallback
+  }
+  function closeModal(){
+    overlay.style.display='none';
+    modal.style.display='none';
+    document.body.classList.remove('symb-no-scroll','symb-blur');
+  }
+
+  if(localStorage.getItem(STORAGE_KEY)!=='1'){ openModal(); }
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    submit.disabled=true;
+
+    const data=new FormData(form);
+    try{
+      await fetch('https://formcarry.com/s/PXeLIboaBp5',{
+        method:'POST', body:data, headers:{'Accept':'application/json'}
+      });
+      if(typeof gtag_report_conversion==='function'){ try{ gtag_report_conversion(); }catch(e){} }
+    }catch(err){
+      console.warn('Formcarry erreur (on débloque quand même).', err);
+    }
+    localStorage.setItem(STORAGE_KEY,'1');
+    closeModal();
+    submit.disabled=false;
+  });
+})();
+</script>
+<!-- === /POPUP === -->
+
+      
 </body></html>
