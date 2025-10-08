@@ -1011,99 +1011,72 @@
     </footer>
 
 <!-- === POPUP / GATE SYMBOTIS — fond flouté === -->
+<!-- ===== POPUP / GATE SYMBOTIS vers Google Sheets ===== -->
 <style>
-  /* overlay assombri + flou natif derrière (si supporté) */
-  #symbGateOverlay{
-    position:fixed; inset:0;
-    background: rgba(0,0,0,.35);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display:none; z-index:99998;
+  #symbGateOverlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;z-index:99998;
+    /* Option flou arrière-plan */
+    backdrop-filter: blur(4px);
   }
-  /* conteneur modal */
-  #symbGateModal{
-    position:fixed; inset:0;
-    display:none; align-items:center; justify-content:center;
-    z-index:99999; padding:24px;
-  }
-  /* carte */
-  #symbGateCard{
-    width:100%; max-width:520px; background:#fff; border-radius:12px;
-    box-shadow:0 10px 40px rgba(0,0,0,.25); overflow:hidden;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  }
-  #symbGateHeader{ padding:20px 24px; background:#0b62ff; color:#fff; }
-  #symbGateBody{ padding:20px 24px; }
-  #symbGateBody p{ margin-bottom:12px; }
-
-  .symbRow{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  .symbField{ margin-bottom:12px; }
-  .symbField label{ display:block; font-size:13px; margin-bottom:4px; }
-  .symbField input[type="text"], .symbField input[type="email"]{
-    width:100%; height:40px; padding:0 12px; border:1px solid #ddd; border-radius:8px;
-  }
-  .symbConsent{ font-size:12px; display:flex; gap:8px; align-items:flex-start; }
-  .symbActions{ margin-top:16px; display:flex; gap:8px; align-items:center; }
-  #symbGateSubmit{
-    background:#0b62ff; color:#fff; font-weight:600; border:none;
-    border-radius:8px; padding:0 16px; height:44px; cursor:pointer;
-  }
-  #symbGateSubmit[disabled]{ opacity:.6; cursor:not-allowed; }
-
-  /* Empêcher le scroll quand ouvert */
-  body.symb-no-scroll{ overflow:hidden; }
-
-  /* FALLBACK universel : floute tout sauf le popup quand body a .symb-blur */
-  body.symb-blur > :not(#symbGateOverlay):not(#symbGateModal){
-    filter: blur(8px);
-    transition: filter .2s ease;
-  }
+  #symbGateModal{position:fixed;inset:0;display:none;z-index:99999;align-items:center;justify-content:center;padding:24px;}
+  #symbGateCard{width:100%;max-width:520px;background:#fff;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.25);overflow:hidden;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+  #symbGateHeader{padding:20px 24px;background:#0b62ff;color:#fff;}
+  #symbGateHeader h3{margin:0;font-size:20px;line-height:1.2;}
+  #symbGateBody{padding:20px 24px;}
+  .symbRow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .symbField{margin-bottom:12px;}
+  .symbField label{display:block;font-size:13px;margin-bottom:6px;color:#222;}
+  .symbField input[type="text"],.symbField input[type="email"]{width:100%;height:40px;padding:0 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;}
+  .symbConsent{font-size:12px;color:#555;display:flex;gap:8px;align-items:flex-start;}
+  .symbActions{margin-top:16px;display:flex;gap:8px;align-items:center;}
+  #symbGateSubmit{height:44px;padding:0 16px;border-radius:10px;border:none;background:#0b62ff;color:#fff;font-weight:600;cursor:pointer;}
+  #symbGateSubmit[disabled]{opacity:.6;cursor:not-allowed;}
+  #symbGateNote{font-size:12px;color:#666;}
+  body.symb-no-scroll{overflow:hidden;}
+  .symbHoney{position:absolute;left:-9999px;top:-9999px;height:0;width:0;opacity:0;}
 </style>
 
-<div id="symbGateOverlay"></div>
+<div id="symbGateOverlay" aria-hidden="true"></div>
 <div id="symbGateModal" role="dialog" aria-modal="true" aria-labelledby="symbGateTitle">
   <div id="symbGateCard">
     <div id="symbGateHeader"><h3 id="symbGateTitle">Accédez au guide — 100% gratuit</h3></div>
     <div id="symbGateBody">
       <p>Remplissez ce court formulaire pour débloquer la lecture de la page.</p>
-
       <form id="symbGateForm" method="post" novalidate>
-        <!-- Contexte pour CRM/analytics -->
+        <!-- Contexte -->
         <input type="hidden" name="page_title" value="Guide IA pour la Recherche d'Emploi">
         <input type="hidden" name="page_url" value="">
         <input type="hidden" name="source" value="github-pages-gate">
+        <input class="symbHoney" type="text" name="website" tabindex="-1" autocomplete="off" />
 
         <div class="symbRow">
           <div class="symbField">
-            <label>Prénom *</label>
-            <input name="prenom" type="text" required autocomplete="given-name">
+            <label for="sg_first">Prénom *</label>
+            <input id="sg_first" name="prenom" type="text" required autocomplete="given-name" />
           </div>
           <div class="symbField">
-            <label>Nom *</label>
-            <input name="nom" type="text" required autocomplete="family-name">
+            <label for="sg_last">Nom *</label>
+            <input id="sg_last" name="nom" type="text" required autocomplete="family-name" />
           </div>
         </div>
 
         <div class="symbField">
-          <label>Métier *</label>
-          <input name="metier" type="text" required>
+          <label for="sg_job">Métier *</label>
+          <input id="sg_job" name="metier" type="text" required />
         </div>
 
         <div class="symbField">
-          <label>Email professionnel *</label>
-          <input name="email" type="email" required autocomplete="email">
+          <label for="sg_email">Email professionnel *</label>
+          <input id="sg_email" name="email" type="email" required autocomplete="email" />
         </div>
 
         <label class="symbConsent">
-          <input type="checkbox" id="sg_consent" required>
-          <span>J’accepte d’être recontacté au sujet de ce guide.
-            <a href="https://www.symbotis.com/privacy" target="_blank" rel="noopener">Politique de confidentialité</a>.
-          </span>
+          <input id="sg_consent" type="checkbox" required />
+          <span>J’accepte d’être recontacté au sujet de ce guide. <a href="https://www.symbotis.com/privacy" target="_blank" rel="noopener">Politique de confidentialité</a>.</span>
         </label>
 
         <div class="symbActions">
           <button id="symbGateSubmit" type="submit">Débloquer l’accès</button>
-          <span style="font-size:12px;color:#666;">* Champs obligatoires</span>
+          <span id="symbGateNote">* Champs obligatoires</span>
         </div>
       </form>
     </div>
@@ -1112,83 +1085,93 @@
 
 <script>
 (function(){
-  const STORAGE_KEY='symbotis:guide-unlocked';
+  const STORAGE_KEY='symbotis:guide-recherche-emploi:unlocked';
   const overlay=document.getElementById('symbGateOverlay');
   const modal=document.getElementById('symbGateModal');
   const form=document.getElementById('symbGateForm');
   const submit=document.getElementById('symbGateSubmit');
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzad9mrCbYWBLcfrwmzNKxTD7vJ4txobowcijJ55eQdOFaIpdBeSB9frhPNg6GpD-jx/exec'; // <-- remplace par ton URL
 
+  // Remplir URL page pour CRM
+  form.querySelector('input[name="page_url"]').value = window.location.href;
 
-  // Renseigner l'URL
-  const urlInput=form.querySelector('input[name="page_url"]');
-  if(urlInput) urlInput.value=window.location.href;
+  function openModal(){ overlay.style.display='block'; modal.style.display='flex'; document.body.classList.add('symb-no-scroll'); }
+  function closeModal(){ overlay.style.display='none'; modal.style.display='none'; document.body.classList.remove('symb-no-scroll'); }
 
-  function openModal(){
-    overlay.style.display='block';
-    modal.style.display='flex';
-    document.body.classList.add('symb-no-scroll','symb-blur'); // <- flou fallback
-  }
-  function closeModal(){
-    overlay.style.display='none';
-    modal.style.display='none';
-    document.body.classList.remove('symb-no-scroll','symb-blur');
-  }
-
+  // Afficher si non débloqué
   if(localStorage.getItem(STORAGE_KEY)!=='1'){ openModal(); }
 
-  form.addEventListener('submit', async (e)=>{
+  form.addEventListener('submit', async function(e){
     e.preventDefault();
     if(!form.checkValidity()){ form.reportValidity(); return; }
-    submit.disabled=true;
 
-    const data=new FormData(form);
-    try{
-      await fetch('https://formcarry.com/s/PXeLIboaBp5',{
-        method:'POST', body:data, headers:{'Accept':'application/json'}
+    // honeypot
+    if(form.querySelector('[name="website"]').value){ alert('Erreur de validation'); return; }
+
+    submit.disabled=true; const original=submit.textContent; submit.textContent='Envoi...';
+
+    // Données communes
+    const payload = {
+      prenom: form.querySelector('[name="prenom"]').value || '',
+      nom: form.querySelector('[name="nom"]').value || '',
+      metier: form.querySelector('[name="metier"]').value || '',
+      email: form.querySelector('[name="email"]').value || '',
+      page_title: form.querySelector('[name="page_title"]').value || document.title,
+      page_url: form.querySelector('[name="page_url"]').value || window.location.href,
+      source: form.querySelector('[name="source"]').value || 'github-pages-gate',
+      user_agent: navigator.userAgent,
+      referrer: document.referrer || '',
+      consent: document.getElementById('sg_consent').checked ? true : false
+    };
+
+    // 1) ENVOI FORM PRINCIPAL (Formcarry) – identique à ton index.html
+    const formData = new FormData();
+    formData.append('nom', payload.nom);
+    formData.append('prenom', payload.prenom);
+    formData.append('email', payload.email);
+    // on place "message" requis côté formcarry avec un résumé utile
+    formData.append('message', `Accès guide IA - Métier: ${payload.metier} - Page: ${payload.page_url}`);
+    formData.append('page_title', payload.page_title);
+    formData.append('page_url', payload.page_url);
+    formData.append('source', payload.source);
+
+    try {
+      await fetch('https://formcarry.com/s/PXeLIboaBp5', {
+        method:'POST',
+        body: formData,
+        headers:{ 'Accept':'application/json' }
       });
-      if(typeof gtag_report_conversion==='function'){ try{ gtag_report_conversion(); }catch(e){} }
-    }catch(err){
-      console.warn('Formcarry erreur (on débloque quand même).', err);
+    } catch(e) {
+      console.warn('Formcarry KO (on continue quand même):', e);
     }
 
-          // ===== Étape C: push vers Google Sheets (Apps Script) — SANS preflight =====
-try{
-  const payloadObj = {
-    prenom: form.querySelector('[name="prenom"]')?.value || '',
-    nom: form.querySelector('[name="nom"]')?.value || '',
-    metier: form.querySelector('[name="metier"]')?.value || '',
-    email: form.querySelector('[name="email"]')?.value || '',
-    page_title: form.querySelector('[name="page_title"]')?.value || document.title,
-    page_url: form.querySelector('[name="page_url"]')?.value || window.location.href,
-    source: form.querySelector('[name="source"]')?.value || 'github-pages-gate',
-    user_agent: navigator.userAgent,
-    referrer: document.referrer || '',
-    consent: document.getElementById('sg_consent')?.checked ? 'true' : 'false'
-  };
+    // 2) PUSH SHEETS — en parallèle (ne bloque pas l’UX)
+    try {
+      fetch('YOUR_APPS_SCRIPT_URL', { // <-- remplace par l’URL du déploiement Apps Script
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(()=>{});
+    } catch(e){ /* ignore */ }
 
-  // URL-encoded → pas de header explicite → pas de preflight
-  const params = new URLSearchParams(payloadObj);
+    // Conversion Google Ads comme sur ton site
+    if (typeof gtag_report_conversion === 'function') {
+      try { gtag_report_conversion(); } catch(e) {}
+    }
 
-  const res = await fetch(APPS_SCRIPT_URL, {
-    method: 'POST',
-    body: params
-    // pas de headers !
-  });
-
-  // (debug utile)
-  // const txt = await res.text(); console.log('AppsScript status', res.status, txt);
-}catch(e){
-  console.warn('Push Google Sheets échoué (on débloque quand même).', e);
-}
-// ===== /Étape C =====
-
+    // Débloquer l'accès
     localStorage.setItem(STORAGE_KEY,'1');
     closeModal();
-    submit.disabled=false;
+
+    // reset bouton
+    submit.textContent=original; submit.disabled=false;
   });
+
+  // utilitaire
+  window.__resetSymbotisGate = function(){ localStorage.removeItem(STORAGE_KEY); openModal(); };
 })();
 </script>
+<!-- ===== /GATE ===== -->
+
 <!-- === /POPUP === -->
 
       
