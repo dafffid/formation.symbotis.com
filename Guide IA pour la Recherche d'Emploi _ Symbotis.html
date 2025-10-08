@@ -1152,38 +1152,36 @@
       console.warn('Formcarry erreur (on débloque quand même).', err);
     }
 
-          // ===== Étape C: push vers Google Sheets (Apps Script) =====
-    try{
-      const payload = {
-        prenom: form.querySelector('[name="prenom"]')?.value || '',
-        nom: form.querySelector('[name="nom"]')?.value || '',
-        metier: form.querySelector('[name="metier"]')?.value || '',
-        email: form.querySelector('[name="email"]')?.value || '',
-        page_title: form.querySelector('[name="page_title"]')?.value || document.title,
-        page_url: form.querySelector('[name="page_url"]')?.value || window.location.href,
-        source: form.querySelector('[name="source"]')?.value || 'github-pages-gate',
-        user_agent: navigator.userAgent,
-        referrer: document.referrer || '',
-        consent: document.getElementById('sg_consent')?.checked ? true : false
-      };
+          // ===== Étape C: push vers Google Sheets (Apps Script) — SANS preflight =====
+try{
+  const payloadObj = {
+    prenom: form.querySelector('[name="prenom"]')?.value || '',
+    nom: form.querySelector('[name="nom"]')?.value || '',
+    metier: form.querySelector('[name="metier"]')?.value || '',
+    email: form.querySelector('[name="email"]')?.value || '',
+    page_title: form.querySelector('[name="page_title"]')?.value || document.title,
+    page_url: form.querySelector('[name="page_url"]')?.value || window.location.href,
+    source: form.querySelector('[name="source"]')?.value || 'github-pages-gate',
+    user_agent: navigator.userAgent,
+    referrer: document.referrer || '',
+    consent: document.getElementById('sg_consent')?.checked ? 'true' : 'false'
+  };
 
-      // Variante A — on attend la réponse (simple à déboguer) :
-      await fetch(APPS_SCRIPT_URL, {
-        method:'POST',
-        headers:{ 'Content-Type':'application/json' },
-        body: JSON.stringify(payload)
-      });
+  // URL-encoded → pas de header explicite → pas de preflight
+  const params = new URLSearchParams(payloadObj);
 
-      // Variante B — fire-and-forget (pas d'impact UX, décommente pour l'utiliser)
-      // fetch(APPS_SCRIPT_URL, {
-      //   method:'POST',
-      //   headers:{ 'Content-Type':'application/json' },
-      //   body: JSON.stringify(payload)
-      // }).catch(()=>{});
-    }catch(e){
-      console.warn('Push Google Sheets échoué (on débloque quand même).', e);
-    }
-    // ===== /Étape C =====
+  const res = await fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    body: params
+    // pas de headers !
+  });
+
+  // (debug utile)
+  // const txt = await res.text(); console.log('AppsScript status', res.status, txt);
+}catch(e){
+  console.warn('Push Google Sheets échoué (on débloque quand même).', e);
+}
+// ===== /Étape C =====
 
     localStorage.setItem(STORAGE_KEY,'1');
     closeModal();
