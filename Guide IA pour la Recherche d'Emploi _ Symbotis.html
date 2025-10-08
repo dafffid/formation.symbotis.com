@@ -1117,6 +1117,8 @@
   const modal=document.getElementById('symbGateModal');
   const form=document.getElementById('symbGateForm');
   const submit=document.getElementById('symbGateSubmit');
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypPa2Sc-BQ28Bc_LFdmPxVg95nDh6GhzdtR-f_S79pjSjHx-dBXwmyx5L3pkU0R2c/exec'; // <-- remplace par ton URL
+
 
   // Renseigner l'URL
   const urlInput=form.querySelector('input[name="page_url"]');
@@ -1149,6 +1151,40 @@
     }catch(err){
       console.warn('Formcarry erreur (on débloque quand même).', err);
     }
+
+          // ===== Étape C: push vers Google Sheets (Apps Script) =====
+    try{
+      const payload = {
+        prenom: form.querySelector('[name="prenom"]')?.value || '',
+        nom: form.querySelector('[name="nom"]')?.value || '',
+        metier: form.querySelector('[name="metier"]')?.value || '',
+        email: form.querySelector('[name="email"]')?.value || '',
+        page_title: form.querySelector('[name="page_title"]')?.value || document.title,
+        page_url: form.querySelector('[name="page_url"]')?.value || window.location.href,
+        source: form.querySelector('[name="source"]')?.value || 'github-pages-gate',
+        user_agent: navigator.userAgent,
+        referrer: document.referrer || '',
+        consent: document.getElementById('sg_consent')?.checked ? true : false
+      };
+
+      // Variante A — on attend la réponse (simple à déboguer) :
+      await fetch(APPS_SCRIPT_URL, {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      // Variante B — fire-and-forget (pas d'impact UX, décommente pour l'utiliser)
+      // fetch(APPS_SCRIPT_URL, {
+      //   method:'POST',
+      //   headers:{ 'Content-Type':'application/json' },
+      //   body: JSON.stringify(payload)
+      // }).catch(()=>{});
+    }catch(e){
+      console.warn('Push Google Sheets échoué (on débloque quand même).', e);
+    }
+    // ===== /Étape C =====
+
     localStorage.setItem(STORAGE_KEY,'1');
     closeModal();
     submit.disabled=false;
